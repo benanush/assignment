@@ -1,0 +1,442 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Design & Development Course</title>
+    <link rel="stylesheet" href="settings.css" />
+      <style>
+          *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Lucida Bright";
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url(temp4.jpeg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding-top: 60px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    text-align: center;
+    padding: 20px;
+  }
+
+  header {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%; /* Full height for the sidebar */
+    width: 110px; /* Fixed width for the sidebar */
+    background: rgba(255,255,255,0.2); /* Dark background */
+    backdrop-filter: blur(5px); /*blur the bg of side nav */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1000;
+    padding: 20px 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: width 0.5s;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 20px;
+
+  }
+  .logo-container div{
+    display:none;
+  }
+  .logo-container h2{
+    font-size: 40px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .logo{
+    width: 40px;
+    border-radius: 50%;
+    margin: auto;
+  }
+
+
+  .menu {
+    list-style: none;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Spacing between menu items */
+  }
+
+
+  .menu li {
+    margin: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  .icon{
+    width: 30px;
+    margin-right: 0px;
+
+  }
+
+  .menu li a {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: none;
+    font-size: 20px;
+  }
+
+  .menu li a:hover {
+    color: aquamarine;
+    background-color: #444; /* Optional: Add background on hover */
+  }
+
+  header:hover{
+    width: 250px;
+  }
+  header:hover .logo-container div{
+    display: block;
+  }
+  header:hover .logo-container div{
+    margin-right: 20px;
+  }
+  header:hover .logo-container{
+    width: 100%;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(5px);
+  }
+  header:hover .menu li a{
+    display: block;
+  }
+  header:hover .menu li a{
+    margin-left: 20px;
+  }
+  header:hover .menu li img{
+    margin-right: 10px;
+    transform: scale(1.05);
+  }
+  header:hover .menu li{
+  justify-content: flex-start;
+  }
+
+  /* Search Button */
+  .btn {
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-top: 20px;
+    background: green;
+    backdrop-filter: blur(5px); /*blur the bg of side nav */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 20px;
+
+    }
+
+  .settings-form {
+    background-color: #fff;
+    padding: 10px 20px;
+    display: inline-block;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+    font-size: 25px;
+    margin-top: 100px;
+  }
+
+  .settings-form h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: black;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 18px;
+    color: black;
+  }
+
+  input[type="text"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  textarea {
+    height: 80px;
+    resize: none;
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+
+  button[type="submit"]:hover {
+    background-color: #219150;
+  }
+
+  button[type="reset"] {
+    background-color: #e74c3c;
+    color: #fff;
+  }
+
+  button[type="reset"]:hover {
+    background-color: #c0392b;
+  }
+  .back {
+    background-color: transparent !important; /* Removes background */
+    border: none !important; /* Ensures no border */
+    padding: 0 !important; /* Remove extra space */
+    margin: 0 !important; /* Remove unnecessary margin */
+}
+
+.back ul {
+  background-color: transparent !important; /* Remove any background on the UL */
+  padding: 0 !important;
+  list-style: none; /* Remove bullet points */
+  margin-left: 30%;
+}
+
+.back ul li {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: skyblue !important; /* Keep only the button blue */
+    display: inline-block;
+    text-align: center;
+    width: auto;
+    margin-right: 20px;
+    border-radius: 12px;
+    margin: 10px;
+    border: none;
+}
+.back button{
+  font-size: 20px;
+}
+.back ul li:hover {
+    background-color: deepskyblue;
+    transform: scale(1.05);
+}
+
+
+
+.back:hover{
+  color: blue;
+  transform: scale(1.05);
+
+}
+    html {
+      overflow-y: scroll;
+    }
+    /* Style the scrollbar */
+
+
+body::-webkit-scrollbar {
+  width: 24px; /* Width of the scrollbar */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: pink; /* Match the scrollbar thumb with the background */
+  border-radius: 6px; /* Round edges */
+  border: 3px solid pink; /* Add padding */
+}
+
+body::-webkit-scrollbar-track {
+  background-color: pink; /* Same as the background color */
+}
+
+.scroll-icon {
+  position: fixed;
+  right: 10px; /* Align near the scrollbar */
+  top: 0;
+  transform: translateY(0);
+  width: 30px;
+  height: 30px;
+  background-color: pink;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: pink;
+  font-weight: bold;
+  z-index: 1000;
+  transition: transform 0.5s linear; /* Smooth movement */
+}
+
+      </style>
+  </head>
+  <body>
+    <div class="scroll-icon" id="scrollIcon">⬤</div>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+              <img src="wordpress-logo-36.png" alt="WOODY Logo" class="logo" />
+              <!-- Add your logo path -->
+              <div><h2>Woody</h2></div>
+            </div>
+            <nav>
+              <ul class="menu">
+                   <li><div class="icon"><img src="{% static 'myapp/images/home-solid-36.png' %}" alt="none"/></div>
+            <a href="{% url 'index' %}">Home</a></li>
+            <li><div class="icon"><img src="{% static 'myapp/images/male-female-regular-36.png' %}" alt="none"/></div>
+            <a  href="{% url 'employee' %}">Employee</a></li>
+            <li><div class="icon"><img src="{% static 'myapp/images/cart-download-regular-36.png' %}" alt="none"/></div>
+            <a href="{% url 'orders' %}">Orders</a></li>
+            <li><div class="icon"><img src="{% static 'myapp/images/product-hunt-logo-36.png' %}" alt="none"/></div>
+            <a href="{% url 'product' %}">Products</a></li>
+            <li><div class="icon"><img src="{% static 'myapp/images/image-alt-solid-36.png' %}" alt="none"/></div>
+            <a href="{% url 'media' %}">Media</a></li>
+            <li><div class="icon"><img src="{% static 'myapp/images/cog-solid-36.png' %}" alt="none"/></div>
+            <a href="{% url 'settings' %}">Settings</a></li>
+              </ul>
+            </nav>
+            <form action="{% url 'login' %}"><button type="submit" class="btn"><img src="bx-revision.svg" alt="none"/>Logout</button></form>
+          </header>
+      <section class="settings-form">
+        <form>
+          <h2>Company Information</h2>
+          <label for="company-name">Company Name:</label>
+          <input
+            type="text"
+            id="company-name"
+            placeholder="Enter company name"
+            required
+          />
+
+          <label for="company-address">Address:</label>
+          <textarea
+            id="company-address"
+            placeholder="Enter company address"
+            required
+          ></textarea>
+
+          <label for="contact-number">Contact Number:</label>
+          <input
+            type="tel"
+            id="contact-number"
+            placeholder="Enter contact number"
+            required
+          />
+
+          <h2>Tax & Shipping</h2>
+          <label for="tax-rate">Tax Rate (%):</label>
+          <input
+            type="number"
+            id="tax-rate"
+            placeholder="Enter tax rate"
+            required
+          />
+
+          <label for="shipping-charge">Default Shipping Charge ($):</label>
+          <input
+            type="number"
+            id="shipping-charge"
+            placeholder="Enter shipping charge"
+            required
+          />
+
+          <h2>Integration</h2>
+          <label for="payment-gateway">Payment Gateway API Key:</label>
+          <input type="text" id="payment-gateway" placeholder="Enter API key" />
+
+          <label for="email-setup">Email Notification Setup:</label>
+          <input
+            type="email"
+            id="email-setup"
+            placeholder="Enter email address"
+          />
+
+          <div class="form-actions">
+            <button type="submit">Save Changes</button>
+            <button type="reset">Reset</button>
+          </div>
+        </form>
+      </section>
+      <div class="back">
+        <ul>
+         <li><form action="media.html"><button type="submit" class="back">back</button></form> </li>
+         <li><form action="setting.html"><button type="submit" class="back">reload</button></form> </li>
+        </ul>
+       </div>
+
+    </div>
+     <!-- JavaScript to handle scrolling -->
+   <script>
+    const scrollIcon = document.getElementById('scrollIcon');
+
+    // Function to update the icon position
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY; // Current scroll position
+      const docHeight = document.body.scrollHeight - window.innerHeight; // Total scrollable height
+      const scrollPercent = scrollTop / docHeight; // Percentage of scroll
+      const viewportHeight = window.innerHeight;
+
+      // Move the icon based on scroll percentage
+      const iconPosition = scrollPercent * viewportHeight;
+      const speedMultiplier = 0.1;//reduce speed
+
+      // Apply the transformation
+      scrollIcon.style.transform = `translateY(${iconPosition}px)`;
+    });
+   </script>
+  </body>
+</html>

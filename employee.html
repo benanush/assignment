@@ -1,0 +1,628 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Design & Development Course</title>
+    <link rel="stylesheet" href="employee.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+      * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lucida Bright";
+  background: url("{% static 'myapp/images/temp2.jpeg' %}") no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;/* it makes the bg image to cover whole screen even if give more content in the same page */
+  margin: 0;
+  padding-left: 250px; /* Space for the side navigation bar */
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
+
+}
+
+
+/* Side Navigation Bar */
+header {
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%; /* Full height for the sidebar */
+  width: 110px; /* Fixed width for the sidebar */
+  background: rgba(255,255,255,0.2); /* Dark background */
+  backdrop-filter: blur(5px); /*blur the bg of side nav */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 1000;
+  padding: 20px 10px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: width 0.5s;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 20px;
+
+}
+.logo-container div{
+  display:none;
+}
+.logo-container h2{
+  font-size: 40px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.logo{
+  width: 40px;
+  border-radius: 50%;
+  margin: auto;
+}
+
+
+.menu {
+  list-style: none;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Spacing between menu items */
+}
+
+
+.menu li {
+  margin: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+}
+.icon{
+  width: 30px;
+  margin-right: 0px;
+
+}
+
+.menu li a {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 5px;
+  display: none;
+  font-size: 20px;
+}
+
+.menu li a:hover {
+  color: aquamarine;
+  background-color: #444; /* Optional: Add background on hover */
+}
+
+header:hover{
+  width: 250px;
+}
+header:hover .logo-container div{
+  display: block;
+}
+header:hover .logo-container div{
+  margin-right: 20px;
+}
+header:hover .logo-container{
+  width: 100%;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(5px);
+}
+header:hover .menu li a{
+  display: block;
+}
+header:hover .menu li a{
+  margin-left: 20px;
+}
+header:hover .menu li img{
+  margin-right: 10px;
+  transform: scale(1.05);
+}
+header:hover .menu li{
+justify-content: flex-start;
+}
+
+/* Search Button */
+.btn {
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-top: 20px;
+  background: green;
+  backdrop-filter: blur(5px); /*blur the bg of side nav */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 20px;
+
+}
+.containerbox {
+
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
+  background: transparent;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0;
+  margin-top: 70px;;
+  }
+
+  h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+
+  /* Search Bar */
+  .search-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+  }
+
+  .search-bar input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+
+  .search-bar button {
+    padding: 10px 20px;
+    background-color: orange;
+    color: BLACK;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .search-bar button:hover {
+    background-color: #2980b9;
+  }
+
+  /* Table Styles */
+  table {
+    width: 100%;
+    max-width: 1200px;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  table thead {
+    background-color: transparent;
+    color: Black;
+  }
+
+  table th,
+  table td {
+    padding: 10px;
+    text-align: left;
+    border: 3px solid black;
+  }
+
+  table th {
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+
+  table tr:nth-child(even) {
+    background-color: transparent;
+  }
+
+  table tr:hover {
+    background-color: palevioletred;
+    transform: scale(1.0);
+  }
+
+  /* Action Buttons */
+  button.edit {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button.edit:hover {
+    background-color: #219150;
+  }
+
+  button.delete {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button.delete:hover {
+    background-color: #c0392b;
+  }
+
+  .back {
+    background-color: transparent !important; /* Removes background */
+    border: none !important; /* Ensures no border */
+    padding: 0 !important; /* Remove extra space */
+
+}
+
+.back ul {
+    background-color: transparent !important; /* Remove any background on the UL */
+    padding: 0;
+    list-style: none; /* Remove bullet points */
+    margin-left: 30%;
+
+
+}
+
+.back ul li {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: skyblue !important; /* Keep only the button blue */
+    display: inline-block;
+    text-align: center;
+    width: auto;
+    margin-right: 20px;
+    border-radius: 12px;
+    margin:0 10px;
+    border: none;
+}
+.back button{
+  font-size: 20px;
+}
+.back ul li:hover {
+    background-color: deepskyblue;
+    transform: scale(1.05);
+}
+
+
+
+.back:hover{
+  color: blue;
+  transform: scale(1.05);
+
+}
+
+    html {
+      overflow-y: scroll;
+    }
+    /* Style the scrollbar */
+
+
+body::-webkit-scrollbar {
+  width: 24px; /* Width of the scrollbar */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: pink; /* Match the scrollbar thumb with the background */
+  border-radius: 6px; /* Round edges */
+  border: 3px solid pink; /* Add padding */
+}
+
+body::-webkit-scrollbar-track {
+  background-color: pink; /* Same as the background color */
+}
+
+.scroll-icon {
+  position: fixed;
+  right: 10px; /* Align near the scrollbar */
+  top: 0;
+  transform: translateY(0);
+  width: 30px;
+  height: 30px;
+  background-color: pink;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: pink;
+  font-weight: bold;
+  z-index: 1000;
+  transition: transform 0.5s linear; /* Smooth movement */
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="scroll-icon" id="scrollIcon">⬤</div>
+    <div class="container">
+      <header>
+        <div class="logo-container">
+           <img src="{% static 'myapp/images/wordpress-logo-36.png' %}" alt="WOODY Logo" class="logo" />
+          <!-- Add your logo path -->
+          <div><h2>Woody</h2></div>
+        </div>
+        <nav>
+          <ul class="menu">
+             <li><div class="icon"><img src="{% static 'myapp/images/home-solid-36.png' %}" alt="none"/></div>
+            <a href="{% url 'index' %}">Home</a></li>
+            <li><div class="icon"><img src="{% static 'myapp/images/male-female-regular-36.png' %}" alt="none"/></div>
+            <a  href="{% url 'employee' %}">Employee</a></li>
+            <li><div class="icon"><img src="{% static 'myapp/images/cart-download-regular-36.png' %}" alt="none"/></div>
+            <a href="{% url 'orders' %}">Orders</a></li>
+            <li><div class="icon"><img src="{% static 'myapp/images/product-hunt-logo-36.png' %}" alt="none"/></div>
+            <a href="{% url 'product' %}">Products</a></li>
+            <li><div class="icon"><img src="{% static 'myapp/images/image-alt-solid-36.png' %}" alt="none"/></div>
+            <a href="{% url 'media' %}">Media</a></li>
+            <li><div class="icon"><img src="{% static 'myapp/images/cog-solid-36.png' %}" alt="none"/></div>
+            <a href="{% url 'settings' %}">Settings</a></li>
+          </ul>
+        </nav>
+        <form action="{% url 'login' %}"><button type="submit" class="btn"><img src="bx-revision.svg" alt="none"/> Logout</button></form>
+      </header>
+      <div class="containerbox">
+      
+        <h1>Employee Details</h1>
+
+        <div class="search-bar">
+          <input
+            type="text" id="searchInput"
+            placeholder="Search orders by Order ID or Customer Name"
+          />
+          <button onclick="searchTable()">Search</button>
+        </div>
+
+        <!-- Orders Table -->
+        <table id="myTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Employee Name</th>
+              <th>Role</th>
+              <th>salary</th>
+              <th>total days</th>
+              <th>no of days present</th>
+              <th>Actions</th>
+              <th>Email</th>
+              <th>Edit details</th>
+              <th>Delete employee</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>John Doe</td>
+              <td>Production manager</td>
+              <td>35,000</td>
+              <td>20</td>
+              <td>20</td>
+              <td>
+                
+                <button class="salary-btn" onclick="reduceSalary(this)">Reduce Salary</button>
+              </td>
+              <td>john.doe@example.com</td>
+              <td>
+                <button class="edit">Edit</button>
+              </td>
+              <td>
+                <button class="delete">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Jane Smith</td>
+              <td>Quality Inspector</td>
+              <td>30,000</td>
+              <td>20</td>
+              <td>18</td>
+              <td>
+               
+                <button class="salary-btn" onclick="reduceSalary(this)">Reduce Salary</button>
+             </td>
+              <td>jane.smith@example.com</td>
+              <td>
+                <button class="edit">Edit</button>
+              </td>
+              <td>
+                <button class="delete">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>kailash</td>
+              <td>Supervisor</td>
+              <td>40,000</td>
+              <td>20</td>
+              <td>19</td>
+              <td>
+               
+                <button class="salary-btn" onclick="reduceSalary(this)">Reduce Salary</button>
+            </td>
+              <td>kailash.123@example.com</td>
+              <td>
+                <button class="edit">Edit</button>
+              </td>
+              <td>
+                <button class="delete">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>John kennedy</td>
+              <td>General manager</td>
+              <td>50000</td>
+              <td>20</td>
+              <td>20</td>
+              <td>
+                
+                <button class="salary-btn" onclick="reduceSalary(this)">Reduce Salary</button>
+            </td>
+              <td>john.kennady@example.com</td>
+              <td>
+                <button class="edit">Edit</button>
+              </td>
+              <td>
+                <button class="delete">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Sidhhu</td>
+              <td>Employee</td>
+              <td>20,000</td>
+              <td>20</td>
+              <td>18</td>
+              <td>
+
+                <button class="salary-btn" onclick="reduceSalary(this)">Reduce Salary</button>
+            </td>
+              <td>sidhhu.90@example.com</td>
+              <td>
+                <button class="edit">Edit</button>
+              </td>
+              <td>
+                <button class="delete">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Lara</td>
+              <td>Sales executive</td>
+              <td>25,000</td>
+              <td>20</td>
+              <td>20</td>
+              <td>
+                
+                <button class="salary-btn" onclick="reduceSalary(this)">Reduce Salary</button>
+            </td>
+              <td>lara.091@example.com</td>
+              <td>
+                <button class="edit">Edit</button>
+              </td>
+              <td>
+                <button class="delete">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Diana</td>
+              <td>Sales manager</td>
+              <td>40,000</td>
+              <td>20</td>
+              <td>20</td>
+              <td>
+                
+                <button class="salary-btn" onclick="reduceSalary(this)">Reduce Salary</button>
+            </td>
+              <td>Diana.091@example.com</td>
+              <td>
+                <button class="edit">Edit</button>
+              </td>
+              <td>
+                <button class="delete">Delete</button>
+              </td>
+            </tr>
+            <!-- Additional rows can be added here -->
+          </tbody>
+        </table>
+        <div class="back">
+          <ul>
+           <li><form action="{% url 'index' %}"><button type="submit" class="back">back</button></form> </li>
+           <li><form action="{% url 'orders' %}"><button type="submit" class="back">next</button></form></li>
+           <li><form action="{% url 'employee' %}"><button type="submit" class="back">reload</button></form> </li>
+          </ul>
+         </div>
+      </div>
+    </div>
+    <script>
+      function markAttendance(button) {
+          const row = button.parentElement.parentElement;
+          const attendanceCell = row.cells[2];
+          attendanceCell.textContent = parseInt(attendanceCell.textContent) + 1;
+          alert('Attendance marked successfully!');
+      }
+
+      function reduceSalary(button) {
+          const row = button.parentElement.parentElement;
+          const salaryCell = row.cells[3];
+          let salary = parseInt(salaryCell.textContent.slice(1)); // Remove the $ symbol
+          salary -= 100; // Reduce by $100
+          salaryCell.textContent = `$${salary}`;
+          alert('Salary reduced successfully!');
+      }
+      function searchTable(){// Get the search input value
+   const input = document.getElementById("searchInput").value.toUpperCase();
+  
+  // Get the table and its rows
+  const table = document.getElementById("myTable");
+  const rows = table.getElementsByTagName("tr");
+  
+  // Loop through all table rows, excluding the header
+  for (let i = 1; i < rows.length; i++) {
+    const cells = rows[i].getElementsByTagName("td");
+    let match = false;
+    
+    // Check if any cell in the row matches the search query
+    for (let j = 0; j < cells.length; j++) {
+      if (cells[j].innerText.toUpperCase().includes(input)) {
+        match = true;
+        break;
+      }
+    }
+    
+    // Show or hide the row based on the match
+    rows[i].style.display = match ? "" : "none";
+  }
+ }
+  </script>
+   <!-- JavaScript to handle scrolling -->
+   <script>
+    const scrollIcon = document.getElementById('scrollIcon');
+
+    // Function to update the icon position
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY; // Current scroll position
+      const docHeight = document.body.scrollHeight - window.innerHeight; // Total scrollable height
+      const scrollPercent = scrollTop / docHeight; // Percentage of scroll
+      const viewportHeight = window.innerHeight;
+
+      // Move the icon based on scroll percentage
+      const iconPosition = scrollPercent * viewportHeight;
+      const speedMultiplier = 0.1;//reduce speed
+
+      // Apply the transformation
+      scrollIcon.style.transform = `translateY(${iconPosition}px)`;
+    });
+   </script>
+  </body>
+</html>
